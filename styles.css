@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2c003e;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #1e0027;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #e0b3ff;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #d1a3ff;
+}
+
+select {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #4b006e;
+    color: #e0b3ff;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6a0080;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 5px;
+}
+
+.button:hover {
+    background-color: #4a004d;
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 20px;
+    background-color: #8a00b0;
+    border-radius: 4px;
+    transition: width 0.3s;
+}
+
+.progress-text {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #d1a3ff;
+}
+
+.key-container {
+    margin-top: 20px;
+}
+
+.key-container h2 {
+    color: #d1a3ff;
+}
+
+.keys-list {
+    text-align: left;
+}
+
+.key-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #2c003e;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    word-wrap: break-word;
+}
+
+.key-item input {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+    color: #e0b3ff;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.key-item button {
+    margin-left: 10px;
+    background-color: #6a0080;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+}
+
+.key-item button:hover {
+    background-color: #4a004d;
+}
+
+.hidden {
+    display: none;
+}
+
+.copy-status {
+    margin-top: 10px;
+    color: #d1a3ff;
+    font-weight: bold;
+}
