@@ -1,6 +1,71 @@
 const APP_TOKEN = 'd28721be-fd2d-4b45-869e-9f253b554e50';
 const PROMO_ID = '43e35910-c168-4634-ad4f-52fd764a843f';
 const EVENTS_DELAY = 20000;
+const defaultLanguage = document.documentElement.getAttribute('lang')
+
+var currentLanguage;
+var keygenActive = false;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const languageSelect = document.getElementById('languageSelect');
+    const supportedLangs = Array.from(languageSelect.options).map(option => option.value);
+
+    const storedLang = localStorage.getItem('language');
+    const userLang = storedLang || navigator.language || navigator.userLanguage;
+    const defaultLang = supportedLangs.includes(userLang) ? userLang : defaultLanguage;
+    switchLanguage(defaultLang);
+});
+
+async function loadTranslations(language) {
+    try {
+        const response = await fetch(`locales/${language}.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load translations: ${response.statusText}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error loading translations:', error);
+        alert('Failed to load translations. Check the console for details.');
+        throw error;
+    }
+}
+
+async function getTranslation(key) {
+    const translations = await loadTranslations(currentLanguage);
+    return translations[key] || key;
+}
+
+function applyTranslations(translations) {
+    document.querySelector('h1').innerText = translations.title;
+    document.getElementById('keyCountLabel').innerText = keygenActive
+        ? translations.selectKeyCountLabel_selected + document.getElementById('keyCountSelect').value
+        : translations.selectKeyCountLabel;
+    document.getElementById('startBtn').innerText = translations.generateButton;
+    document.getElementById('generatedKeysTitle').innerText = translations.generatedKeysTitle;
+    document.getElementById('creatorChannelBtn').innerText = translations.footerButton;
+    document.getElementById('copyAllBtn').innerText = translations.copyAllKeysButton;
+
+    document.querySelectorAll('.copyKeyBtn').forEach(button => {
+        button.innerText = translations.copyKeyButton || 'Copy Key';
+    });
+}
+
+async function switchLanguage(language) {
+    try {
+        const translations = await loadTranslations(language);
+        applyTranslations(translations);
+        currentLanguage = language;
+        localStorage.setItem('language', language);
+        languageSelect.value = language;
+    } catch (error) {
+        console.error('Error switching language:', error);
+    }
+}
+
+languageSelect.addEventListener('change', () => {
+    const newLanguage = languageSelect.value;
+    switchLanguage(newLanguage);
+});
 
 document.getElementById('startBtn').addEventListener('click', async () => {
     const startBtn = document.getElementById('startBtn');
@@ -22,13 +87,13 @@ document.getElementById('startBtn').addEventListener('click', async () => {
     generatedKeysTitle.classList.add('hidden');
     keysList.innerHTML = '';
     keyCountSelect.classList.add('hidden');
-    keyCountLabel.innerText = `Генерируется ключей: ${keyCount}`
+    keyCountLabel.innerText = await getTranslation('selectKeyCountLabel_selected') + keyCount;
     startBtn.classList.add('hidden');
     copyAllBtn.classList.add('hidden');
     startBtn.disabled = true;
 
     let progress = 0;
-    let progressStopped = false;
+    keygenActive = true;
 
     const updateProgress = (increment) => {
         const steps = 10;
@@ -36,7 +101,7 @@ document.getElementById('startBtn').addEventListener('click', async () => {
         let step = 0;
 
         const increaseProgress = () => {
-            if (progressStopped) return;
+            if (!keygenActive) return;
             if (step < steps) {
                 progress += stepIncrement;
                 progressBar.style.width = `${progress}%`;
@@ -55,7 +120,7 @@ document.getElementById('startBtn').addEventListener('click', async () => {
         try {
             clientToken = await login(clientId);
         } catch (error) {
-            alert(`Не удалось войти: ${error.message}`);
+            alert(`Failed to log in: ${error.message}`);
             startBtn.disabled = false;
             return null;
         }
@@ -74,60 +139,65 @@ document.getElementById('startBtn').addEventListener('click', async () => {
             updateProgress(30 / keyCount);
             return key;
         } catch (error) {
-            alert(`Не удалось сгенерировать ключ: ${error.message}`);
+            alert(`Failed to generate key: ${error.message}`);
             return null;
         }
     };
 
     const keys = await Promise.all(Array.from({ length: keyCount }, generateKeyProcess));
 
-    progressStopped = true;
+    keygenActive = false;
 
     progressBar.style.width = '100%';
     progressText.innerText = '100%';
 
     if (keys.length > 1) {
-        keysList.innerHTML = keys.filter(key => key).map((key, index) => `
-            <div class="key-item">
-                <div class="key-number">${index+1}</div>
-                <input type="text" value="${key}" readonly>
-                <button class="copyKeyBtn copy-button" data-key="${key}">Скопировать ключ</button>
-            </div>
-        `).join('');
+        const keyItemsPromises = keys.filter(key => key).map(async (key, index) => {
+            const copyKeyButtonText = await getTranslation('copyKeyButton');
+            return `
+                <div class="key-item">
+                    <div class="key-number">${index + 1}</div>
+                    <input type="text" value="${key}" readonly>
+                    <button class="copyKeyBtn copy-button" data-key="${key}">${copyKeyButtonText}</button>
+                </div>
+            `;
+        });
+        const keyItemsHtml = await Promise.all(keyItemsPromises);
+        keysList.innerHTML = keyItemsHtml.join('');
         copyAllBtn.classList.remove('hidden');
     } else if (keys.length === 1) {
         keysList.innerHTML = `
             <div class="key-item">
                 <div class="key-number">1</div>
                 <input type="text" value="${keys[0]}" readonly>
-                <button class="copyKeyBtn copy-button" data-key="${keys[0]}">Скопировать ключ</button>
+                <button class="copyKeyBtn copy-button" data-key="${keys[0]}">${await getTranslation('copyKeyButton')}</button>
             </div>
         `;
     }
 
     keyContainer.classList.remove('hidden');
     generatedKeysTitle.classList.remove('hidden');
-    keyCountLabel.innerText = "Выберите количество ключей для генерации:"
+    keyCountLabel.innerText = await getTranslation('selectKeyCountLabel');
     document.querySelectorAll('.copyKeyBtn').forEach(button => {
         button.addEventListener('click', (event) => {
             const key = event.target.getAttribute('data-key');
-            navigator.clipboard.writeText(key).then(() => {
-                event.target.innerText = 'Ключ скопирован';
+            navigator.clipboard.writeText(key).then(async () => {
+                event.target.innerText = await getTranslation('keyCopied');
                 event.target.style.backgroundColor = '#28a745';
-                setTimeout(() => {
-                    event.target.innerText = 'Скопировать ключ';
+                setTimeout(async () => {
+                    event.target.innerText = await getTranslation('copyKeyButton');
                     event.target.style.backgroundColor = '#6a0080';
                 }, 2000);
             });
         });
     });
-    copyAllBtn.addEventListener('click', (event) => {
+    copyAllBtn.addEventListener('click', async (event) => {
         const keysText = keys.filter(key => key).join('\n');
-        navigator.clipboard.writeText(keysText).then(() => {
-            event.target.innerText = 'Все ключи скопированы';
+        navigator.clipboard.writeText(keysText).then(async () => {
+            event.target.innerText = await getTranslation('allKeysCopied');
             event.target.style.backgroundColor = '#28a745';
-            setTimeout(() => {
-                event.target.innerText = 'Скопировать все ключи';
+            setTimeout(async () => {
+                event.target.innerText = await getTranslation('copyAllKeysButton');
                 event.target.style.backgroundColor = '#6a0080';
             }, 2000);
         });
@@ -137,7 +207,6 @@ document.getElementById('startBtn').addEventListener('click', async () => {
     keyCountSelect.classList.remove('hidden');
     startBtn.disabled = false;
 });
-
 
 document.getElementById('creatorChannelBtn').addEventListener('click', () => {
     window.location.href = 'https://t.me/pdosi_project';
@@ -157,7 +226,7 @@ async function login(clientId) {
     });
     const data = await response.json();
     if (!response.ok) {
-        throw new Error(data.message || 'Не удалось войти');
+        throw new Error(data.message || 'Failed to log in');
     }
     return data.clientToken;
 }
@@ -177,7 +246,7 @@ async function emulateProgress(clientToken) {
     });
     const data = await response.json();
     if (!response.ok) {
-        throw new Error(data.message || 'Не удалось зарегистрировать событие');
+        throw new Error(data.message || 'Failed to register event');
     }
     return data.hasCode;
 }
@@ -193,7 +262,7 @@ async function generateKey(clientToken) {
     });
     const data = await response.json();
     if (!response.ok) {
-        throw new Error(data.message || 'Не удалось сгенерировать ключ');
+        throw new Error(data.message || 'Failed to generate key');
     }
     return data.promoCode;
 }

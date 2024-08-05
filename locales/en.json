@@ -1,0 +1,12 @@
+{
+    "title": "Hamster Kombat Key Generator",
+    "generateButton": "Generate Keys",
+    "generatedKeysTitle": "Generated Keys:",
+    "footerButton": "Powered by Project PDoSI",
+    "copyKeyButton": "Copy Key",
+    "keyCopied": "Key Copied",
+    "copyAllKeysButton": "Copy All Keys",
+    "allKeysCopied": "All Keys Copied",
+    "selectKeyCountLabel": "Select the number of keys to generate:",
+    "selectKeyCountLabel_selected": "The selected number of keys to generate: "
+}
