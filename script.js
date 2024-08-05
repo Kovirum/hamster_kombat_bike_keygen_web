@@ -231,6 +231,37 @@ async function login(clientId) {
     return data.clientToken;
 }
 
+function generateUUID() {
+    if (typeof crypto.randomUUID === 'function') {
+        try {
+            return crypto.randomUUID();
+        } catch (error) {
+            console.warn('crypto.randomUUID() failed, falling back to old method.');
+        }
+    }
+
+    const cryptoObj = window.crypto || window.msCrypto;
+    if (cryptoObj && cryptoObj.getRandomValues) {
+        const bytes = new Uint8Array(16);
+        cryptoObj.getRandomValues(bytes);
+        bytes[6] = (bytes[6] & 0x0f) | 0x40;
+        bytes[8] = (bytes[8] & 0x3f) | 0x80;
+        return [
+            bytes.slice(0, 4).toString('hex'),
+            bytes.slice(4, 6).toString('hex'),
+            bytes.slice(6, 8).toString('hex'),
+            bytes.slice(8, 10).toString('hex'),
+            bytes.slice(10).toString('hex')
+        ].join('-');
+    } else {
+        console.warn('crypto.getRandomValues not supported. Falling back to a less secure method.');
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+}
+
 async function emulateProgress(clientToken) {
     const response = await fetch('https://api.gamepromo.io/promo/register-event', {
         method: 'POST',
@@ -240,7 +271,7 @@ async function emulateProgress(clientToken) {
         },
         body: JSON.stringify({
             promoId: PROMO_ID,
-            eventId: crypto.randomUUID(),
+            eventId: generateUUID(),
             eventOrigin: 'undefined'
         })
     });
