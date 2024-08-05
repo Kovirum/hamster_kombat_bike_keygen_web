@@ -15,8 +15,6 @@ document.getElementById('startBtn').addEventListener('click', async () => {
     const generatedKeysTitle = document.getElementById('generatedKeysTitle');
     const keyCount = parseInt(keyCountSelect.value);
 
-    keyCountLabel.innerText = `Количество ключей: ${keyCount}`;
-
     progressBar.style.width = '0%';
     progressText.innerText = '0%';
     progressContainer.classList.remove('hidden');
@@ -24,15 +22,31 @@ document.getElementById('startBtn').addEventListener('click', async () => {
     generatedKeysTitle.classList.add('hidden');
     keysList.innerHTML = '';
     keyCountSelect.classList.add('hidden');
+    keyCountLabel.innerText = `Генерируется ключей: ${keyCount}`
     startBtn.classList.add('hidden');
     copyAllBtn.classList.add('hidden');
     startBtn.disabled = true;
 
     let progress = 0;
+    let progressStopped = false;
+
     const updateProgress = (increment) => {
-        progress += increment;
-        progressBar.style.width = `${progress}%`;
-        progressText.innerText = `${progress}%`;
+        const steps = 10;
+        const stepIncrement = increment / steps;
+        let step = 0;
+
+        const increaseProgress = () => {
+            if (progressStopped) return;
+            if (step < steps) {
+                progress += stepIncrement;
+                progressBar.style.width = `${progress}%`;
+                progressText.innerText = `${Math.round(progress)}%`;
+                step++;
+                setTimeout(increaseProgress, 2000 / steps + Math.random() * 1000);
+            }
+        };
+
+        increaseProgress();
     };
 
     const generateKeyProcess = async () => {
@@ -67,62 +81,63 @@ document.getElementById('startBtn').addEventListener('click', async () => {
 
     const keys = await Promise.all(Array.from({ length: keyCount }, generateKeyProcess));
 
+    progressStopped = true;
+
+    progressBar.style.width = '100%';
+    progressText.innerText = '100%';
+
     if (keys.length > 1) {
-        keysList.innerHTML = keys.filter(key => key).map(key => `
+        keysList.innerHTML = keys.filter(key => key).map((key, index) => `
             <div class="key-item">
+                <div class="key-number">${index+1}</div>
                 <input type="text" value="${key}" readonly>
-                <button class="copyKeyBtn" data-key="${key}">Скопировать ключ</button>
+                <button class="copyKeyBtn copy-button" data-key="${key}">Скопировать ключ</button>
             </div>
         `).join('');
         copyAllBtn.classList.remove('hidden');
     } else if (keys.length === 1) {
         keysList.innerHTML = `
             <div class="key-item">
+                <div class="key-number">1</div>
                 <input type="text" value="${keys[0]}" readonly>
-                <button class="copyKeyBtn" data-key="${keys[0]}">Скопировать ключ</button>
+                <button class="copyKeyBtn copy-button" data-key="${keys[0]}">Скопировать ключ</button>
             </div>
         `;
     }
 
     keyContainer.classList.remove('hidden');
     generatedKeysTitle.classList.remove('hidden');
+    keyCountLabel.innerText = "Выберите количество ключей для генерации:"
     document.querySelectorAll('.copyKeyBtn').forEach(button => {
         button.addEventListener('click', (event) => {
             const key = event.target.getAttribute('data-key');
             navigator.clipboard.writeText(key).then(() => {
-                const copyStatus = document.getElementById('copyStatus');
-                copyStatus.classList.remove('hidden');
-                setTimeout(() => copyStatus.classList.add('hidden'), 2000);
+                event.target.innerText = 'Ключ скопирован';
+                event.target.style.backgroundColor = '#28a745';
+                setTimeout(() => {
+                    event.target.innerText = 'Скопировать ключ';
+                    event.target.style.backgroundColor = '#6a0080';
+                }, 2000);
             });
         });
     });
-    copyAllBtn.addEventListener('click', () => {
+    copyAllBtn.addEventListener('click', (event) => {
         const keysText = keys.filter(key => key).join('\n');
         navigator.clipboard.writeText(keysText).then(() => {
-            const copyStatus = document.getElementById('copyStatus');
-            copyStatus.classList.remove('hidden');
-            setTimeout(() => copyStatus.classList.add('hidden'), 2000);
+            event.target.innerText = 'Все ключи скопированы';
+            event.target.style.backgroundColor = '#28a745';
+            setTimeout(() => {
+                event.target.innerText = 'Скопировать все ключи';
+                event.target.style.backgroundColor = '#6a0080';
+            }, 2000);
         });
     });
-
-    progressBar.style.width = '100%';
-    progressText.innerText = '100%';
 
     startBtn.classList.remove('hidden');
     keyCountSelect.classList.remove('hidden');
     startBtn.disabled = false;
 });
 
-document.getElementById('generateMoreBtn').addEventListener('click', () => {
-    document.getElementById('progressContainer').classList.add('hidden');
-    document.getElementById('keyContainer').classList.add('hidden');
-    document.getElementById('startBtn').classList.remove('hidden');
-    document.getElementById('keyCountSelect').classList.remove('hidden');
-    document.getElementById('generatedKeysTitle').classList.add('hidden');
-    document.getElementById('copyAllBtn').classList.add('hidden');
-    document.getElementById('keysList').innerHTML = '';
-    document.getElementById('keyCountLabel').innerText = 'Количество ключей:';
-});
 
 document.getElementById('creatorChannelBtn').addEventListener('click', () => {
     window.location.href = 'https://t.me/pdosi_project';
