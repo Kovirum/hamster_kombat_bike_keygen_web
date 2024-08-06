@@ -1,0 +1,13 @@
+{
+    "title": "Generator Kluczy Hamster Kombat",
+    "generateButton": "Generuj klucze",
+    "generatedKeysTitle": "Wygenerowane klucze:",
+    "footerButton": "Opracowane przez Project PDoSI",
+    "copyKeyButton": "Skopiuj klucz",
+    "keyCopied": "Klucz skopiowany",
+    "copyAllKeysButton": "Skopiuj wszystkie klucze",
+    "allKeysCopied": "Wszystkie klucze skopiowane",
+    "selectKeyCountLabel": "Wybierz liczbę kluczy do wygenerowania:",
+    "selectKeyCountLabel_selected": "Wybrana liczba kluczy do wygenerowania: ",
+    "selectGameLabel": "Wybierz grę do wygenerowania kluczy:"
+}

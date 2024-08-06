@@ -1,0 +1,13 @@
+{
+    "title": "Hamster Kombat Schlüsselgenerator",
+    "generateButton": "Schlüssel generieren",
+    "generatedKeysTitle": "Generierte Schlüssel:",
+    "footerButton": "Entwickelt von Project PDoSI",
+    "copyKeyButton": "Schlüssel kopieren",
+    "keyCopied": "Schlüssel kopiert",
+    "copyAllKeysButton": "Alle Schlüssel kopieren",
+    "allKeysCopied": "Alle Schlüssel kopiert",
+    "selectKeyCountLabel": "Wählen Sie die Anzahl der zu generierenden Schlüssel aus:",
+    "selectKeyCountLabel_selected": "Ausgewählte Anzahl von Schlüsseln zur Generierung: ",
+    "selectGameLabel": "Wählen Sie das Spiel zum Generieren von Schlüsseln aus:"
+}

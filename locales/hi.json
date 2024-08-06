@@ -1,0 +1,13 @@
+{
+    "title": "Hamster Kombat कुंजी जनरेटर",
+    "generateButton": "कुंजी उत्पन्न करें",
+    "generatedKeysTitle": "उत्पन्न की गई कुंजी:",
+    "footerButton": "Project PDoSI द्वारा विकसित",
+    "copyKeyButton": "कुंजी कॉपी करें",
+    "keyCopied": "कुंजी कॉपी की गई",
+    "copyAllKeysButton": "सभी कुंजी कॉपी करें",
+    "allKeysCopied": "सभी कुंजियाँ कॉपी की गईं",
+    "selectKeyCountLabel": "जनरेट करने के लिए कुंजियों की संख्या चुनें:",
+    "selectKeyCountLabel_selected": "जनरेट करने के लिए चुनी गई कुंजियों की संख्या: ",
+    "selectGameLabel": "कुंजी उत्पन्न करने के लिए खेल चुनें:"
+}

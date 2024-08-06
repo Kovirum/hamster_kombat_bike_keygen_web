@@ -1,0 +1,13 @@
+{
+    "title": "Generador de Claves Hamster Kombat",
+    "generateButton": "Generar claves",
+    "generatedKeysTitle": "Claves generadas:",
+    "footerButton": "Desarrollado por Project PDoSI",
+    "copyKeyButton": "Copiar clave",
+    "keyCopied": "Clave copiada",
+    "copyAllKeysButton": "Copiar todas las claves",
+    "allKeysCopied": "Todas las claves copiadas",
+    "selectKeyCountLabel": "Selecciona la cantidad de claves para generar:",
+    "selectKeyCountLabel_selected": "Cantidad de claves seleccionadas para generar: ",
+    "selectGameLabel": "Selecciona el juego para generar claves:"
+}

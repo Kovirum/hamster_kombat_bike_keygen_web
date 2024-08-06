@@ -1,0 +1,13 @@
+{
+    "title": "Hamster Kombat 키 생성기",
+    "generateButton": "키 생성",
+    "generatedKeysTitle": "생성된 키들:",
+    "footerButton": "Project PDoSI 개발",
+    "copyKeyButton": "키 복사",
+    "keyCopied": "키가 복사되었습니다",
+    "copyAllKeysButton": "모든 키 복사",
+    "allKeysCopied": "모든 키가 복사되었습니다",
+    "selectKeyCountLabel": "생성할 키의 수를 선택하세요:",
+    "selectKeyCountLabel_selected": "선택된 키의 수: ",
+    "selectGameLabel": "키를 생성할 게임 선택:"
+}

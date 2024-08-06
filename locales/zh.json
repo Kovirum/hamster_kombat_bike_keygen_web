@@ -1,0 +1,13 @@
+{
+    "title": "Hamster Kombat 密钥生成器",
+    "generateButton": "生成密钥",
+    "generatedKeysTitle": "生成的密钥：",
+    "footerButton": "由 Project PDoSI 开发",
+    "copyKeyButton": "复制密钥",
+    "keyCopied": "密钥已复制",
+    "copyAllKeysButton": "复制所有密钥",
+    "allKeysCopied": "所有密钥已复制",
+    "selectKeyCountLabel": "选择要生成的密钥数量：",
+    "selectKeyCountLabel_selected": "选择生成的密钥数量： ",
+    "selectGameLabel": "选择生成密钥的游戏："
+}

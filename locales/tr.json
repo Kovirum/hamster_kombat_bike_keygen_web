@@ -1,0 +1,13 @@
+{
+    "title": "Hamster Kombat Anahtar Üretici",
+    "generateButton": "Anahtarları Üret",
+    "generatedKeysTitle": "Üretilen Anahtarlar:",
+    "footerButton": "Project PDoSI tarafından geliştirilmiştir",
+    "copyKeyButton": "Anahtarı Kopyala",
+    "keyCopied": "Anahtar kopyalandı",
+    "copyAllKeysButton": "Tüm Anahtarları Kopyala",
+    "allKeysCopied": "Tüm anahtarlar kopyalandı",
+    "selectKeyCountLabel": "Üretilecek anahtar sayısını seçin:",
+    "selectKeyCountLabel_selected": "Üretilecek anahtar sayısı: ",
+    "selectGameLabel": "Anahtar üretmek için oyunu seçin:"
+}

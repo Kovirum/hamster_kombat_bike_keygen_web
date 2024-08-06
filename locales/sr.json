@@ -1,0 +1,13 @@
+{
+    "title": "Генератор Кључева Hamster Kombat",
+    "generateButton": "Генериши кључеве",
+    "generatedKeysTitle": "Генерисани кључеви:",
+    "footerButton": "Развио Project PDoSI",
+    "copyKeyButton": "Копирај кључ",
+    "keyCopied": "Кључ је копиран",
+    "copyAllKeysButton": "Копирај све кључеве",
+    "allKeysCopied": "Сви кључеви су копирани",
+    "selectKeyCountLabel": "Изаберите број кључева за генерацију:",
+    "selectKeyCountLabel_selected": "Изабрани број кључева за генерацију: ",
+    "selectGameLabel": "Изаберите игру за генерацију кључева:"
+}

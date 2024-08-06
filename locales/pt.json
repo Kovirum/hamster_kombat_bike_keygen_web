@@ -1,0 +1,13 @@
+{
+    "title": "Gerador de Chaves Hamster Kombat",
+    "generateButton": "Gerar chaves",
+    "generatedKeysTitle": "Chaves geradas:",
+    "footerButton": "Desenvolvido por Project PDoSI",
+    "copyKeyButton": "Copiar chave",
+    "keyCopied": "Chave copiada",
+    "copyAllKeysButton": "Copiar todas as chaves",
+    "allKeysCopied": "Todas as chaves copiadas",
+    "selectKeyCountLabel": "Selecione a quantidade de chaves para gerar:",
+    "selectKeyCountLabel_selected": "Quantidade de chaves selecionadas para gerar: ",
+    "selectGameLabel": "Selecione o jogo para gerar chaves:"
+}
