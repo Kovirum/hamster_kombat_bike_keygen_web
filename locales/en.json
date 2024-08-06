@@ -8,5 +8,6 @@
     "copyAllKeysButton": "Copy All Keys",
     "allKeysCopied": "All Keys Copied",
     "selectKeyCountLabel": "Select the number of keys to generate:",
-    "selectKeyCountLabel_selected": "The selected number of keys to generate: "
+    "selectKeyCountLabel_selected": "The selected number of keys to generate: ",
+    "selectGameLabel": "Select the game to generate the keys:"
 }

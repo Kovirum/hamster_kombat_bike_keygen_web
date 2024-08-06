@@ -8,5 +8,6 @@
     "copyAllKeysButton": "Скопировать все ключи",
     "allKeysCopied": "Все ключи скопированы",
     "selectKeyCountLabel": "Выберите количество ключей для генерации:",
-    "selectKeyCountLabel_selected": "Выбранное количество ключей для генерации: "
+    "selectKeyCountLabel_selected": "Выбранное количество ключей для генерации: ",
+    "selectGameLabel": "Выберите игру для генерации ключей:"
 }

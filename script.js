@@ -1,19 +1,42 @@
-const APP_TOKEN = 'd28721be-fd2d-4b45-869e-9f253b554e50';
-const PROMO_ID = '43e35910-c168-4634-ad4f-52fd764a843f';
 const EVENTS_DELAY = 20000;
 const defaultLanguage = document.documentElement.getAttribute('lang')
+const gamePromoConfigs = {
+    MyCloneArmy: {
+        appToken: '74ee0b5b-775e-4bee-974f-63e7f4d5bacb',
+        promoId: 'fe693b26-b342-4159-8808-15e3ff7f8767'
+    },
+    ChainCube2048: {
+        appToken: 'd1690a07-3780-4068-810f-9b5bbf2931b2',
+        promoId: 'b4170868-cef0-424f-8eb9-be0622e8e8e3'
+    },
+    TrainMiner: {
+        appToken: '82647f43-3f87-402d-88dd-09a90025313f',
+        promoId: 'c4480ac7-e178-4973-8061-9ed5b2e17954'
+    },
+    BikeRide3D: {
+        appToken: 'd28721be-fd2d-4b45-869e-9f253b554e50',
+        promoId: '43e35910-c168-4634-ad4f-52fd764a843f'
+    },
+};
 
+let currentAppConfig = gamePromoConfigs.MyCloneArmy;
 var currentLanguage;
 var keygenActive = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     const languageSelect = document.getElementById('languageSelect');
+    const gameSelect = document.getElementById('gameSelect');
     const supportedLangs = Array.from(languageSelect.options).map(option => option.value);
 
     const storedLang = localStorage.getItem('language');
     const userLang = storedLang || navigator.language || navigator.userLanguage;
     const defaultLang = supportedLangs.includes(userLang) ? userLang : defaultLanguage;
     switchLanguage(defaultLang);
+
+    gameSelect.addEventListener('change', () => {
+        const selectedGame = gameSelect.value;
+        currentAppConfig = gamePromoConfigs[selectedGame];
+    });
 });
 
 async function loadTranslations(language) {
@@ -44,6 +67,7 @@ function applyTranslations(translations) {
     document.getElementById('generatedKeysTitle').innerText = translations.generatedKeysTitle;
     document.getElementById('creatorChannelBtn').innerText = translations.footerButton;
     document.getElementById('copyAllBtn').innerText = translations.copyAllKeysButton;
+    document.getElementById('gameSelectLabel').innerText = translations.selectGameLabel;
 
     document.querySelectorAll('.copyKeyBtn').forEach(button => {
         button.innerText = translations.copyKeyButton || 'Copy Key';
@@ -79,6 +103,7 @@ document.getElementById('startBtn').addEventListener('click', async () => {
     const copyAllBtn = document.getElementById('copyAllBtn');
     const generatedKeysTitle = document.getElementById('generatedKeysTitle');
     const keyCount = parseInt(keyCountSelect.value);
+    document.getElementById("gameSelect").disabled = true;
 
     progressBar.style.width = '0%';
     progressText.innerText = '0%';
@@ -178,6 +203,7 @@ document.getElementById('startBtn').addEventListener('click', async () => {
     keyContainer.classList.remove('hidden');
     generatedKeysTitle.classList.remove('hidden');
     keyCountLabel.innerText = await getTranslation('selectKeyCountLabel');
+    document.getElementById("gameSelect").disabled = false;
     document.querySelectorAll('.copyKeyBtn').forEach(button => {
         button.addEventListener('click', (event) => {
             const key = event.target.getAttribute('data-key');
@@ -222,7 +248,7 @@ async function login(clientId) {
     const response = await fetch('https://api.gamepromo.io/promo/login-client', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ appToken: APP_TOKEN, clientId, clientOrigin: 'deviceid' })
+        body: JSON.stringify({ appToken: currentAppConfig.appToken, clientId, clientOrigin: 'deviceid' })
     });
     const data = await response.json();
     if (!response.ok) {
@@ -247,11 +273,11 @@ function generateUUID() {
         bytes[6] = (bytes[6] & 0x0f) | 0x40;
         bytes[8] = (bytes[8] & 0x3f) | 0x80;
         return [
-            bytes.slice(0, 4).toString('hex'),
-            bytes.slice(4, 6).toString('hex'),
-            bytes.slice(6, 8).toString('hex'),
-            bytes.slice(8, 10).toString('hex'),
-            bytes.slice(10).toString('hex')
+            bytes.slice(0, 4).map(b => b.toString(16).padStart(2, '0')).join(''),
+            bytes.slice(4, 6).map(b => b.toString(16).padStart(2, '0')).join(''),
+            bytes.slice(6, 8).map(b => b.toString(16).padStart(2, '0')).join(''),
+            bytes.slice(8, 10).map(b => b.toString(16).padStart(2, '0')).join(''),
+            bytes.slice(10).map(b => b.toString(16).padStart(2, '0')).join('')
         ].join('-');
     } else {
         console.warn('crypto.getRandomValues not supported. Falling back to a less secure method.');
@@ -270,15 +296,15 @@ async function emulateProgress(clientToken) {
             'Authorization': `Bearer ${clientToken}`
         },
         body: JSON.stringify({
-            promoId: PROMO_ID,
+            promoId: currentAppConfig.promoId,
             eventId: generateUUID(),
             eventOrigin: 'undefined'
         })
     });
     const data = await response.json();
-    if (!response.ok) {
-        throw new Error(data.message || 'Failed to register event');
-    }
+    // if (!response.ok) {
+    //     throw new Error(data.message || 'Failed to register event');
+    // }
     return data.hasCode;
 }
 
@@ -289,7 +315,7 @@ async function generateKey(clientToken) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${clientToken}`
         },
-        body: JSON.stringify({ promoId: PROMO_ID })
+        body: JSON.stringify({ promoId: currentAppConfig.promoId })
     });
     const data = await response.json();
     if (!response.ok) {
