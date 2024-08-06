@@ -252,7 +252,12 @@ async function login(clientId) {
     });
     const data = await response.json();
     if (!response.ok) {
-        throw new Error(data.message || 'Failed to log in');
+        if (data.error_code == "TooManyIpRequest") {
+            throw new Error('You have reached the rate limit. Please wait a few minutes and try again.');
+        } else {
+            throw new Error(data.error_message || 'Failed to log in');
+        }
+        
     }
     return data.clientToken;
 }
@@ -303,7 +308,7 @@ async function emulateProgress(clientToken) {
     });
     const data = await response.json();
     // if (!response.ok) {
-    //     throw new Error(data.message || 'Failed to register event');
+    //     throw new Error(data.error_message || 'Failed to register event');
     // }
     return data.hasCode;
 }
@@ -319,7 +324,7 @@ async function generateKey(clientToken) {
     });
     const data = await response.json();
     if (!response.ok) {
-        throw new Error(data.message || 'Failed to generate key');
+        throw new Error(data.error_message || 'Failed to generate key');
     }
     return data.promoCode;
 }
