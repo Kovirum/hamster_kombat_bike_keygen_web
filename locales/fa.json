@@ -1,0 +1,13 @@
+{
+    "title": "تولید کننده کلید Hamster Kombat",
+    "generateButton": "تولید کلیدها",
+    "generatedKeysTitle": "کلیدهای تولید شده:",
+    "footerButton": "قدرت گرفته از پروژه PDoSI",
+    "copyKeyButton": "کپی کردن کلید",
+    "keyCopied": "کلید کپی شد",
+    "copyAllKeysButton": "کپی کردن همه کلیدها",
+    "allKeysCopied": "همه کلیدها کپی شد",
+    "selectKeyCountLabel": "تعداد کلیدها برای تولید را انتخاب کنید:",
+    "selectKeyCountLabel_selected": "تعداد کلیدهای انتخاب شده برای تولید: ",
+    "selectGameLabel": "بازی را برای تولید کلیدها انتخاب کنید:"
+}
