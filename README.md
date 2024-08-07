@@ -32,6 +32,7 @@ To use the Hamster Kombat key generator:
 - Српски (Serbian)
 - Беларуская (Belarusian)
 - العربية (Arabic)
+- فارسی (Persian)
 - Español (Spanish)
 - Français (French)
 - Deutsch (German)
