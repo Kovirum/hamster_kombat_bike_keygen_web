@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Генератор Ключей Hamster Kombat</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="main-container">
-        <div class="language-selector">
+    <main class="main-container">
+        <section class="language-selector">
             <select id="languageSelect">
                 <option value="ru">Русский</option>
                 <option value="en">English</option>
@@ -28,8 +29,8 @@
                 <option value="tr">Türkçe</option>
                 <option value="pl">Polski</option>
             </select>
-        </div>
-        <div class="container">
+        </section>
+        <section class="container">
             <h1>Генератор Ключей Hamster Kombat</h1>
             <label for="gameSelect" id="gameSelectLabel">Выберите игру для генерации ключа:</label>
             <select id="gameSelect">
@@ -63,9 +64,8 @@
                 <button id="copyAllBtn" class="button hidden">Скопировать все ключи</button>
                 <div id="keysList" class="keys-list"></div>
             </div>
-        </div>
+        </section>
         <button id="creatorChannelBtn" class="button footer-button">Powered by Project PDoSI</button>
-    </div>
-    <script src="script.js"></script>
+    </main>
 </body>
 </html>
