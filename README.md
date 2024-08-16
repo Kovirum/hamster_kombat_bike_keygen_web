@@ -15,6 +15,7 @@ Hamster Kombat Universal Key Generator is a web application designed to generate
   - Train Miner
   - Bike Ride 3D
   - Merge Away
+  - Twerk Race
 
 ## Getting Started
 
