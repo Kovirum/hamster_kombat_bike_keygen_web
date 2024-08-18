@@ -3,7 +3,7 @@ const gamePromoConfigs = {
     MyCloneArmy: {
         appToken: '74ee0b5b-775e-4bee-974f-63e7f4d5bacb',
         promoId: 'fe693b26-b342-4159-8808-15e3ff7f8767',
-        eventsDelay: 70000,
+        eventsDelay: 120000,
         attemptsNumber: 11
     },
     ChainCube2048: {
