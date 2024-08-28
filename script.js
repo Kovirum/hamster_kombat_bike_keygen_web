@@ -53,6 +53,12 @@ const gamePromoConfigs = {
         promoId: '8814a785-97fb-4177-9193-ca4180ff9da8',
         eventsDelay: 20000,
         attemptsNumber: 20
+    }, 
+    CafeDash: {
+        appToken: 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11',
+        promoId: 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11',
+        eventsDelay: 23000,
+        attemptsNumber: 16
     }
 };
 

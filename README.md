@@ -10,7 +10,6 @@ Hamster Kombat Universal Key Generator is a web application designed to generate
 - **Multilingual Support**: The site supports multiple languages, including automatic detection of the user's preferred language and saving the selected language between sessions for a personalized experience.
 - **Responsive Design**: Accessible from any device, including mobile and desktop.
 - **Game Selection**: Choose from multiple games to generate keys for:
-  - My Clone Army
   - Chain Cube 2048
   - Train Miner
   - Bike Ride 3D
@@ -19,6 +18,7 @@ Hamster Kombat Universal Key Generator is a web application designed to generate
   - Polysphere
   - Mow and Trim
   - Mud Racing
+  - Cafe Dash
 
 ## Getting Started
 
