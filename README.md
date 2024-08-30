@@ -12,13 +12,13 @@ Hamster Kombat Universal Key Generator is a web application designed to generate
 - **Game Selection**: Choose from multiple games to generate keys for:
   - Chain Cube 2048
   - Train Miner
-  - Bike Ride 3D
   - Merge Away
   - Twerk Race
   - Polysphere
   - Mow and Trim
-  - Mud Racing
   - Cafe Dash
+  - Gangs Wars
+  - Zoopolis
 
 ## Getting Started
 

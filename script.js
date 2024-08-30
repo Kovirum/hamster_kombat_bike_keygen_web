@@ -12,12 +12,6 @@ const gamePromoConfigs = {
         eventsDelay: 20000,
         attemptsNumber: 10
     },
-    BikeRide3D: {
-        appToken: 'd28721be-fd2d-4b45-869e-9f253b554e50',
-        promoId: '43e35910-c168-4634-ad4f-52fd764a843f',
-        eventsDelay: 20000,
-        attemptsNumber: 22
-    },
     MergeAway: {
         appToken: '8d1cc2ad-e097-4b86-90ef-7a27e19fb833',
         promoId: 'dc128d28-c45b-411c-98ff-ac7726fbaea4',
@@ -42,17 +36,23 @@ const gamePromoConfigs = {
         eventsDelay: 20000,
         attemptsNumber: 20
     },
-    MudRacing: {
-        appToken: '8814a785-97fb-4177-9193-ca4180ff9da8',
-        promoId: '8814a785-97fb-4177-9193-ca4180ff9da8',
-        eventsDelay: 20000,
-        attemptsNumber: 20
-    }, 
     CafeDash: {
         appToken: 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11',
         promoId: 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11',
         eventsDelay: 23000,
         attemptsNumber: 16
+    },
+    GangsWars: {
+        appToken: 'b6de60a0-e030-48bb-a551-548372493523',
+        promoId: 'c7821fa7-6632-482c-9635-2bd5798585f9',
+        eventsDelay: 40000,
+        attemptsNumber: 23
+    }, 
+    Zoopolis: {
+        appToken: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
+        promoId: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
+        eventsDelay: 21000,
+        attemptsNumber: 23
     }
 };
 
