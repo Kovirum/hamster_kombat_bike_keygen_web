@@ -16,9 +16,8 @@ Hamster Kombat Universal Key Generator is a web application designed to generate
   - Twerk Race
   - Polysphere
   - Mow and Trim
-  - Cafe Dash
-  - Gangs Wars
   - Zoopolis
+  - Fluff Crusade
 
 ## Getting Started
 
