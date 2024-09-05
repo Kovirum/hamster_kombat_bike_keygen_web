@@ -47,6 +47,18 @@ const gamePromoConfigs = {
       promoId: '112887b0-a8af-4eb2-ac63-d82df78283d9',
       eventsDelay: 20000,
       attemptsNumber: 30
+    },
+    TileTrio: {
+        appToken: 'e68b39d2-4880-4a31-b3aa-0393e7df10c7',
+        promoId: 'e68b39d2-4880-4a31-b3aa-0393e7df10c7',
+        eventsDelay: 20000,
+        attemptsNumber: 22
+    },
+    StoneAge: {
+        appToken: '04ebd6de-69b7-43d1-9c4b-04a6ca3305af',
+        promoId: '04ebd6de-69b7-43d1-9c4b-04a6ca3305af',
+        attemptsNumber: 20,
+        eventsDelay: 20000
     }
 };
 
