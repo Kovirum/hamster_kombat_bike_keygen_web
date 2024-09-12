@@ -20,6 +20,7 @@ Hamster Kombat Universal Key Generator is a web application designed to generate
   - Tile Trio
   - Fluff Crusade
   - Stone Age
+  - Bounce Masters 
 
 ## Getting Started
 
