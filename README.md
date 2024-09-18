@@ -22,6 +22,8 @@ Hamster Kombat Universal Key Generator is a web application designed to generate
   - Stone Age
   - Bouncemasters
   - Hide Ball 
+  - Count Masters
+  - Pin Out Master
 
 ## Getting Started
 
