@@ -82,7 +82,20 @@ const gamePromoConfigs = {
         appToken: 'd2378baf-d617-417a-9d99-d685824335f0', 
         promoId: 'd2378baf-d617-417a-9d99-d685824335f0', 
         attemptsNumber: 30,
-        eventsDelay: 20000}
+        eventsDelay: 20000
+    },
+    AmongWater: {
+        appToken: 'daab8f83-8ea2-4ad0-8dd5-d33363129640',
+        promoId: 'daab8f83-8ea2-4ad0-8dd5-d33363129640',
+        attemptsNumber: 20,
+        eventsDelay: 20000
+    },
+    InfectedFrontier: {
+         appToken: 'eb518c4b-e448-4065-9d33-06f3039f0fcb',
+         promoId: 'eb518c4b-e448-4065-9d33-06f3039f0fcb',
+        attemptsNumber: 20,
+        eventsDelay: 20000
+    }
 };
 
 let currentAppConfig = Object.values(gamePromoConfigs)[0];

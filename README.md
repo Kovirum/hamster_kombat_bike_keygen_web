@@ -24,6 +24,8 @@ Hamster Kombat Universal Key Generator is a web application designed to generate
   - Hide Ball 
   - Count Masters
   - Pin Out Master
+  - Among Water
+  - Infected Frontier
 
 ## Getting Started
 
